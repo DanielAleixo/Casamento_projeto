@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosso Casamento D & S</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Whisper&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Voltar ao Início</a></li>
+      <li><a href="lista_de_presentes.html">Lista de Presentes</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Contagem Regressiva</h1>
+    <div class="cronometro-container">
+      <div class="cronometro" id="cronometro">
+        <div class="cronometro-item">
+          <span class="cronometro-numero" id="dias">00</span>
+          <span class="cronometro-label">Dias</span>
+        </div>
+
+        <div class="cronometro-item">
+          <span class="cronometro-numero" id="horas">00</span>
+          <span class="cronometro-label">Horas</span>
+        </div>
+
+        <div class="cronometro-item">
+          <span class="cronometro-numero" id="minutos">00</span>
+          <span class="cronometro-label">Minutos</span>
+        </div>
+
+        <div class="cronometro-item">
+          <span class="cronometro-numero" id="segundos">00</span>
+          <span class="cronometro-label">Segundos</span>
+        </div>
+      </div>
+      <p id="mensagem"></p>
+    </div>
+  </header>
+
+  <main>
+    <h1>Confirme sua presença!</h1>
+    <form id="formPresenca">
+      <!-- Certifique-se que estes IDs existem -->
+      <input type="text" id="nome" placeholder="Seu nome" required />
+      <input type="email" id="email" placeholder="Seu e-mail" required />
+      <select id="presenca" required>
+        <option value="true">✅ Confirmado</option>
+        <option value="false">❌ Não posso ir</option>
+      </select>
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+
+  <p class="dica-formulario">
+    🔍 Digite <strong>exatamente</strong> o nome e e-mail do seu convite
+  </p>
+
+  <style>
+    .dica-formulario {
+      font-size: 0.9em;
+      color: #666;
+      margin: 10px 0;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 4px;
+    }
+  </style>
+
+  <footer>
+    <p>
+      <a href="#" id="saveTheDate">Save the Date!</a>
+    </p>
+    <p>Nosso Casamento D & S</p>
+    <p>Contato: casamentoD&S@contato.com</p>
+  </footer>
+
+  <script src="js/cronometro.js"></script>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/confirmacao.js"></script>
+  <script src="js/calendarHandler.js"></script>
+</body>
+
+</html>

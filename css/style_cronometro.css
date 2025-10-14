@@ -1,0 +1,90 @@
+/* Container do cronômetro */
+.cronometro-container {
+  background-color: var(--branco-puro);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin: 0 auto;
+  max-width: 710px;
+  border-top: 4px solid var(--destaque-dourado);
+  width: 100%;
+}
+
+/* Título */
+.cronometro-container h1 {
+  font-family: 'Whisper', cursive;
+  font-size: 3.5rem;
+  color: var(--roxo-premium);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Itens do cronômetro */
+.cronometro {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cronometro-item {
+  background-color: rgba(245, 240, 230, 0.7);
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  min-width: 100px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(106, 76, 147, 0.1);
+}
+
+.cronometro-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.cronometro-numero {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--roxo-premium);
+  margin-bottom: 5px;
+  display: block;
+  text-align: center;
+}
+
+.cronometro-label {
+  font-size: 1rem;
+  color: var(--verde-elegante);
+  letter-spacing: 1px;
+  text-align: center;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Mensagem */
+#mensagem {
+  font-style: italic;
+  margin-top: 1.5rem;
+  color: var(--roxo-premium);
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .cronometro {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cronometro-item {
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: 15px;
+    padding: 1rem 1.5rem;
+  }
+  
+  .cronometro-container h1 {
+    font-size: 2.5rem;
+  }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosso Casamento D & S</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Whisper&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style_cronometro.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="lista_de_presentes.html" class="btn-presentes">Lista de Presentes</a></li>
+    </ul>
+    <button id="btnConfirmar" class="btn-confirmar">Confirmar Presença</button>
+  </nav>
+
+  <div class="conteudo-principal">
+    <!-- Aside Esquerdo (Noivos) -->
+    <aside class="ladoesquerdo">
+      <h1 id="noivos">Os Noivos</h1>
+      <p>Daniel e Sabrina</p>
+      <div class="foto-noivos">
+        <img src="images/noivos.jpg" alt="Foto dos noivos" />
+      </div>
+    </aside>
+
+    <!-- Conteúdo Central -->
+    <div class="centro">
+      <header>
+        <div class="cronometro-container">
+          <h1>Contagem Regressiva</h1>
+          <div class="cronometro" id="cronometro">
+            <div class="cronometro-item">
+              <span class="cronometro-numero" id="dias">00</span>
+              <span class="cronometro-label">Dias</span>
+            </div>
+            <div class="cronometro-item">
+              <span class="cronometro-numero" id="horas">00</span>
+              <span class="cronometro-label">Horas</span>
+            </div>
+            <div class="cronometro-item">
+              <span class="cronometro-numero" id="minutos">00</span>
+              <span class="cronometro-label">Minutos</span>
+            </div>
+            <div class="cronometro-item">
+              <span class="cronometro-numero" id="segundos">00</span>
+              <span class="cronometro-label">Segundos</span>
+            </div>
+          </div>
+          <p id="mensagem"></p>
+        </div>
+      </header>
+      
+      <main>
+        <h2>Estamos muito felizes em compartilhar este momento especial com você!</h2>
+        <p>Data: 25 de dezembro de 2026</p>
+        <p>Local: Igreja São José, Rua das Flores, 123</p>
+        <p>Horário: 16:00</p>
+        <p>Esperamos vê-lo lá!</p>
+        <p>Com amor, D & S</p>
+      </main>
+    </div>
+
+    <!-- Aside Direito (Local) -->
+    <aside class="ladodireito">
+      <h1 id="local">O Local</h1>
+      <p>Igreja São José</p>
+      <div class="foto-local">
+        <img src="images/local.jpg" alt="Foto do local" />
+      </div>
+    </aside>
+  </div>
+
+  <div class="lista-presentes-container">
+    Confira nossa lista de presentes!
+    <a href="lista_de_presentes.html" class="btn-presentes">Ver Lista Completa</a>
+  </div>
+
+  <footer>
+    <p>
+      <a href="#" id="saveTheDate">Save the Date!</a>
+    </p>
+    <p>Nosso Casamento D & S</p>
+    <p>Contato: casamentoD&S@contato.com</p>
+  </footer>
+
+  <script src="js/cronometro.js"></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/calendarHandler.js"></script>
+</body>
+
+</html>

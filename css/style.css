@@ -1,0 +1,317 @@
+/* Variáveis de cores */
+:root {
+  --verde-elegante: #2a7f62;
+  --roxo-premium: #6a4c93;
+  --branco-puro: #ffffff;
+  --creme-suave: #f5f0e6;
+  --destaque-dourado: #d4af37;
+}
+
+/* Estilos gerais */
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--creme-suave);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navegação */
+nav {
+  background-color: var(--roxo-premium);
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  height: 80px;
+  position: relative;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Botão Lista de Presentes */
+.btn-presentes {
+  display: inline-block;
+  background-color: var(--verde-elegante);
+  color: var(--branco-puro) !important;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 15px rgba(42, 127, 98, 0.3);
+  border: 2px solid transparent;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-presentes:hover {
+  background-color: transparent;
+  border-color: var(--branco-puro);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(42, 127, 98, 0.4);
+}
+
+/* Botão Confirmar Presença */
+.btn-confirmar {
+  background: linear-gradient(135deg, #8a4fff 0%, var(--roxo-premium) 100%);
+  color: var(--branco-puro);
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 15px rgba(106, 76, 147, 0.3);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-confirmar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(106, 76, 147, 0.4);
+}
+
+.btn-confirmar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+
+.btn-confirmar:hover::before {
+  left: 100%;
+}
+
+/* Estrutura Principal */
+.conteudo-principal {
+  display: grid;
+  grid-template-areas: 
+    "esquerda centro direita";
+  grid-template-columns: 300px 1fr 300px;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  min-height: calc(100vh - 180px);
+}
+
+.centro {
+  grid-area: centro;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+/* Asides Laterais */
+.ladoesquerdo {
+  grid-area: esquerda;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+  align-self: start;
+}
+
+.ladodireito {
+  grid-area: direita;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+  align-self: start;
+}
+
+/* Fotos nos asides */
+.foto-noivos, .foto-local {
+  width: 100%;
+  height: 400px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.foto-noivos img, .foto-local img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Conteúdo Central */
+header {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+main {
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--branco-puro);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  text-align: center;
+  border-top: 4px solid var(--destaque-dourado);
+}
+
+main h2 {
+  color: var(--roxo-premium);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+main p {
+  color: #555;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+/* Seção Lista de Presentes */
+.lista-presentes-container {
+  background: linear-gradient(135deg, var(--verde-elegante) 0%, #1e6b50 100%);
+  color: var(--branco-puro);
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.lista-presentes-container a {
+  margin-top: 1rem;
+}
+
+/* Rodapé */
+footer {
+  background-color: var(--roxo-premium);
+  color: var(--branco-puro);
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+footer a {
+  color: var(--branco-puro);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+footer a:hover {
+  color: var(--destaque-dourado);
+}
+
+
+/* Responsividade - Aqui fazemos a mágica */
+@media (max-width: 1024px) {
+  .conteudo-principal {
+    grid-template-areas: 
+      "esquerda centro"
+      "direita centro";
+    grid-template-columns: 250px 1fr;
+  }
+  
+  .ladodireito {
+    grid-area: direita;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .conteudo-principal {
+    grid-template-areas: 
+      "centro"
+      "esquerda"
+      "direita";
+    grid-template-columns: 1fr;
+  }
+  
+  .ladoesquerdo, .ladodireito {
+    position: static;
+    width: 100%;
+    max-width: 600px;
+    margin: 1rem auto;
+  }
+  
+  .centro {
+    grid-area: centro;
+    padding: 1rem 0;
+  }
+}
+
+/* Estilização dos asides (mantém o mesmo) */
+.ladoesquerdo, .ladodireito {
+  padding: 1.5rem;
+  background-color: var(--branco-puro);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.ladoesquerdo {
+  border-top: 4px solid var(--verde-elegante);
+}
+
+.ladodireito {
+  border-top: 4px solid var(--roxo-premium);
+}
+
+/* Garante que as imagens não vazem */
+.foto-noivos, .foto-local {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.foto-noivos img, .foto-local img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 1rem;
+    height: auto;
+  }
+  
+  nav ul {
+    margin-bottom: 1rem;
+  }
+  
+  .foto-noivos, .foto-local {
+    height: 300px;
+  }
+  
+  .btn-presentes, .btn-confirmar {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+  }
+}
