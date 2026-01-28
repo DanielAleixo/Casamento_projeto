@@ -129,3 +129,56 @@ document.addEventListener('DOMContentLoaded', async () => {
         feedbackDiv.className = 'feedback';
     }
 });
+
+// Adicione no início do confirmacao.js, depois do DOMContentLoaded
+async function verificarSessaoMagicLink() {
+    try {
+        const { data, error } = await supabase.auth.getSession();
+        
+        if (error) throw error;
+        
+        if (data.session) {
+            // Usuário veio do Magic Link
+            const usuario = data.session.user;
+            
+            // Mostra mensagem de boas-vindas
+            const feedbackDiv = document.getElementById('feedback-mensagem') || 
+                               document.querySelector('.feedback') || 
+                               createWelcomeMessage();
+            
+            feedbackDiv.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎉</div>
+                    <h3 style="color: #d8a1a4;">Bem-vindo(a) ao nosso sistema de confirmação!</h3>
+                    <p style="color: #666; margin: 1rem 0;">
+                        Estamos tão felizes por você estar aqui!<br>
+                        Agora é só preencher o formulário abaixo para confirmar sua presença.
+                    </p>
+                    <p style="color: #999; font-size: 0.9rem;">
+                        Email: <strong>${usuario.email}</strong>
+                    </p>
+                </div>
+            `;
+            
+            feedbackDiv.className = 'feedback feedback-success';
+            
+            // Preenche automaticamente o email se vier do Magic Link
+            const emailInput = document.getElementById('email');
+            if (emailInput && usuario.email) {
+                emailInput.value = usuario.email;
+                emailInput.readOnly = true;
+                emailInput.style.background = '#f9f9f9';
+            }
+            
+            // Logout após uso (opcional)
+            setTimeout(() => {
+                supabase.auth.signOut();
+            }, 300000); // 5 minutos
+        }
+    } catch (error) {
+        console.log('Não há sessão ativa ou erro:', error);
+    }
+}
+
+// Chame esta função no início
+verificarSessaoMagicLink();

@@ -1,94 +1,122 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nosso Casamento D & S</title>
+  <title>Daniel & Sabrina - Confirmação de Presença</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Whisper&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Whisper&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style_cronometro.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/confirmacao.css" />
 </head>
 
 <body>
-  <nav>
-    <ul>
-      <li><a href="index.html">Voltar ao Início</a></li>
-      <li><a href="lista_de_presentes.html">Lista de Presentes</a></li>
-    </ul>
-  </nav>
+  <!-- IMAGEM DE FUNDO COMO PAPEL DE PAREDE -->
+  <div class="papel-parede">
+    <img src="images/noivos9.jpeg" alt="Fundo do casamento" class="imagem-fundo">
+    <div class="overlay-fundo"></div>
+  </div>
 
-  <header>
-    <h1>Contagem Regressiva</h1>
-    <div class="cronometro-container">
-      <div class="cronometro" id="cronometro">
-        <div class="cronometro-item">
-          <span class="cronometro-numero" id="dias">00</span>
-          <span class="cronometro-label">Dias</span>
-        </div>
+  <!-- CONTEÚDO SOBREPOSTO -->
+  <div class="conteudo-sobreposto">
+    <!-- Navegação flutuante -->
+    <nav class="nav-flutuante">
+      <ul>
+        <li><a href="index.html" class="btn-voltar">Voltar ao Início</a></li>
+        <li><a href="lista_de_presentes.html" class="btn-presentes">Lista de Presentes</a></li>
+      </ul>
+    </nav>
 
-        <div class="cronometro-item">
-          <span class="cronometro-numero" id="horas">00</span>
-          <span class="cronometro-label">Horas</span>
+    <!-- Conteúdo Principal -->
+    <main class="conteudo-confirmacao">
+      
+      <!-- Cronômetro -->
+      <div class="cronometro-container-confirmacao">
+        <h1>Contagem Regressiva</h1>
+        <div class="cronometro" id="cronometro">
+          <div class="cronometro-item">
+            <span class="cronometro-numero" id="dias">00</span>
+            <span class="cronometro-label">Dias</span>
+          </div>
+          <div class="cronometro-item">
+            <span class="cronometro-numero" id="horas">00</span>
+            <span class="cronometro-label">Horas</span>
+          </div>
+          <div class="cronometro-item">
+            <span class="cronometro-numero" id="minutos">00</span>
+            <span class="cronometro-label">Minutos</span>
+          </div>
+          <div class="cronometro-item">
+            <span class="cronometro-numero" id="segundos">00</span>
+            <span class="cronometro-label">Segundos</span>
+          </div>
         </div>
-
-        <div class="cronometro-item">
-          <span class="cronometro-numero" id="minutos">00</span>
-          <span class="cronometro-label">Minutos</span>
-        </div>
-
-        <div class="cronometro-item">
-          <span class="cronometro-numero" id="segundos">00</span>
-          <span class="cronometro-label">Segundos</span>
-        </div>
+        <p id="mensagem"></p>
       </div>
-      <p id="mensagem"></p>
-    </div>
-  </header>
 
-  <main>
-    <h1>Confirme sua presença!</h1>
-    <form id="formPresenca">
-      <!-- Certifique-se que estes IDs existem -->
-      <input type="text" id="nome" placeholder="Seu nome" required />
-      <input type="email" id="email" placeholder="Seu e-mail" required />
-      <select id="presenca" required>
-        <option value="true">✅ Confirmado</option>
-        <option value="false">❌ Não posso ir</option>
-      </select>
-      <button type="submit">Enviar</button>
-    </form>
-  </main>
+      <!-- Título Principal -->
+      <div class="cabecalho-confirmacao">
+        <h1 class="titulo-principal">Confirme sua Presença!</h1>
+        <p class="mensagem-intro">
+          Digite exatamente o nome e e-mail informados no seu convite.
+        </p>
+      </div>
 
-  <p class="dica-formulario">
-    🔍 Digite <strong>exatamente</strong> o nome e e-mail do seu convite
-  </p>
+      <!-- Formulário de Confirmação ORIGINAL -->
+      <form id="formPresenca" class="formulario-confirmacao">
+        <div id="feedback-mensagem" class="feedback"></div>
+        
+        <div class="form-group">
+          <label for="nome" class="form-label">Nome Completo</label>
+          <input type="text" id="nome" placeholder="Seu nome" required />
+        </div>
 
-  <style>
-    .dica-formulario {
-      font-size: 0.9em;
-      color: #666;
-      margin: 10px 0;
-      padding: 10px;
-      background: #f8f9fa;
-      border-radius: 4px;
-    }
-  </style>
+        <div class="form-group">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" id="email" placeholder="Seu e-mail" required />
+        </div>
 
-  <footer>
-    <p>
-      <a href="#" id="saveTheDate">Save the Date!</a>
-    </p>
-    <p>Nosso Casamento D & S</p>
-    <p>Contato: casamentoD&S@contato.com</p>
-  </footer>
+        <div class="form-group">
+          <label for="presenca" class="form-label">Confirmação</label>
+          <select id="presenca" required>
+            <option value="true">✅ Confirmado</option>
+            <option value="false">❌ Não posso ir</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-enviar-confirmacao">
+            <span class="btn-text">Enviar Confirmação</span>
+          </button>
+        </div>
+
+        <p class="dica-formulario">
+          🔍 Digite <strong>exatamente</strong> o nome e e-mail do seu convite. 
+          Caso tenha dúvidas, entre em contato: casamentoD&S@contato.com
+        </p>
+      </form>
+
+    </main>
+
+    <!-- Rodapé flutuante -->
+    <footer class="rodape-flutuante">
+      <div class="contato-flutuante">
+        <p>
+          <a href="#" id="saveTheDate" class="link-dourado">Save the Date!</a>
+        </p>
+        <p>Daniel & Sabrina - Nosso Casamento</p>
+        <p>📧 casamentoD&S@contato.com</p>
+      </div>
+    </footer>
+
+  </div>
 
   <script src="js/cronometro.js"></script>
-
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="js/supabaseClient.js"></script>
   <script src="js/confirmacao.js"></script>
   <script src="js/calendarHandler.js"></script>
 </body>
-
 </html>

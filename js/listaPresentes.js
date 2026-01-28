@@ -269,3 +269,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Inicialização
     carregarPresentes();
 });
+
+// Adicione esta função após as outras funções
+function mostrarCarregamento() {
+    listaPresentes.innerHTML = `
+        <div class="carregando">
+            <div class="spinner"></div>
+            <p>Carregando lista de presentes...</p>
+        </div>
+    `;
+}
+
+// Modifique a função carregarPresentes para usar o loading:
+async function carregarPresentes() {
+    mostrarCarregamento(); // Mostra o loading
+    
+    try {
+        // ... resto do código existente ...
+    } catch (error) {
+        console.error('Erro ao carregar presentes:', error);
+        mostrarErroCarregamento();
+    }
+}

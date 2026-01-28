@@ -1,0 +1,484 @@
+/* ===========================================
+   ESTILOS ESPECÍFICOS PARA LISTA DE PRESENTES
+   =========================================== */
+
+/* Botão Voltar */
+.btn-voltar {
+  display: inline-block;
+  background-color: rgba(247, 202, 201, 0.9); /* quartzo-rosa */
+  color: var(--branco-puro) !important;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 15px rgba(247, 202, 201, 0.3);
+  border: 2px solid transparent;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-voltar:hover {
+  background-color: transparent;
+  border-color: var(--branco-puro);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(247, 202, 201, 0.4);
+}
+
+/* Conteúdo Principal */
+.conteudo-lista-presentes {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+/* Cronômetro na lista */
+.cronometro-container-lista {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: var(--sombra-media);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 3rem;
+  border-top: 4px solid var(--detalhe-dourado);
+  transition: all 0.3s ease;
+}
+
+.cronometro-container-lista:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-forte);
+}
+
+.cronometro-container-lista h1 {
+  font-family: 'Whisper', cursive;
+  font-size: 3rem;
+  color: var(--rosa-escuro);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* Cabeçalho da Lista */
+.cabecalho-lista {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 3rem;
+  box-shadow: var(--sombra-media);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 4px solid var(--botao-roxo-claro);
+}
+
+.titulo-principal {
+  font-family: 'Whisper', cursive;
+  font-size: 4rem;
+  color: var(--rosa-escuro);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.mensagem-intro {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Container de Presentes */
+.presentes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Cards de Presente */
+.presente-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: var(--sombra-suave);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.presente-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sombra-forte);
+}
+
+.presente-card.reservado {
+  opacity: 0.85;
+  border-left: 5px solid #4CAF50;
+}
+
+.presente-card.ajuda-custo {
+  border-left: 5px solid var(--detalhe-dourado);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.presente-info h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  color: var(--rosa-escuro);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.presente-info p {
+  font-family: 'Montserrat', sans-serif;
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.presente-info .valor {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  color: var(--detalhe-dourado);
+  font-weight: 700;
+  margin: 1.5rem 0;
+}
+
+.presente-info .reservado-por {
+  font-family: 'Montserrat', sans-serif;
+  color: #4CAF50;
+  font-weight: 600;
+  font-style: italic;
+  padding: 0.5rem;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+/* Checkbox personalizado */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1rem;
+  background: rgba(177, 156, 217, 0.1);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.checkbox-container:hover {
+  background: rgba(177, 156, 217, 0.2);
+}
+
+.checkbox-container input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkmark {
+  height: 22px;
+  width: 22px;
+  background-color: #fff;
+  border: 2px solid var(--botao-roxo-claro);
+  border-radius: 6px;
+  margin-right: 15px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.checkbox-container:hover .checkmark {
+  border-color: #9b87c9;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--botao-roxo-claro);
+  border-color: var(--botao-roxo-claro);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: var(--botao-roxo-claro);
+  font-weight: 600;
+}
+
+/* Lista de Ajudas */
+.ajudas-lista {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 10px;
+}
+
+.ajudas-lista h4 {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--detalhe-dourado);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.ajudas-lista ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ajudas-lista li {
+  font-family: 'Montserrat', sans-serif;
+  color: #666;
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.ajudas-lista li:last-child {
+  border-bottom: none;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  margin: 10% auto;
+  padding: 3rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: var(--sombra-forte);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  animation: slideUp 0.3s ease-out;
+}
+
+.close-modal {
+  color: var(--rosa-escuro);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-modal:hover {
+  color: var(--botao-roxo-claro);
+}
+
+.modal-titulo {
+  font-family: 'Whisper', cursive;
+  font-size: 2.5rem;
+  color: var(--rosa-escuro);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 400;
+  clear: both;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-form input {
+  padding: 15px;
+  border: 2px solid rgba(216, 161, 164, 0.3);
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.modal-form input:focus {
+  outline: none;
+  border-color: var(--botao-roxo-claro);
+  box-shadow: 0 0 0 3px rgba(177, 156, 217, 0.2);
+}
+
+#valor-container input {
+  width: 100%;
+}
+
+.btn-confirmar-modal {
+  background: linear-gradient(135deg, var(--botao-roxo-claro) 0%, #9b87c9 100%);
+  color: var(--branco-puro);
+  padding: 16px;
+  border: none;
+  border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.4s;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+.btn-confirmar-modal:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(177, 156, 217, 0.4);
+}
+
+.btn-confirmar-modal:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Feedback no modal */
+#feedback-modal {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+#feedback-modal.success {
+  background: rgba(76, 175, 80, 0.1);
+  color: #2E7D32;
+  border: 1px solid #4CAF50;
+}
+
+#feedback-modal.error {
+  background: rgba(244, 67, 54, 0.1);
+  color: #C62828;
+  border: 1px solid #F44336;
+}
+
+#feedback-modal.info {
+  background: rgba(33, 150, 243, 0.1);
+  color: #1565C0;
+  border: 1px solid #2196F3;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .conteudo-lista-presentes {
+    max-width: 95%;
+  }
+  
+  .presentes-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .conteudo-lista-presentes {
+    padding: 0 1rem;
+  }
+  
+  .cabecalho-lista {
+    padding: 2rem;
+  }
+  
+  .titulo-principal {
+    font-size: 3rem;
+  }
+  
+  .cronometro-container-lista {
+    padding: 2rem;
+  }
+  
+  .presentes-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.2rem;
+  }
+  
+  .presente-card {
+    padding: 1.5rem;
+  }
+  
+  .modal-content {
+    padding: 2rem;
+    margin: 15% auto;
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .conteudo-lista-presentes {
+    padding: 0 0.5rem;
+  }
+  
+  .cabecalho-lista {
+    padding: 1.5rem;
+  }
+  
+  .titulo-principal {
+    font-size: 2.5rem;
+  }
+  
+  .mensagem-intro {
+    font-size: 1.1rem;
+  }
+  
+  .presentes-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .cronometro-container-lista h1 {
+    font-size: 2.5rem;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+    margin: 20% auto;
+  }
+  
+  .modal-titulo {
+    font-size: 2rem;
+  }
+}
+
+/* Animações */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

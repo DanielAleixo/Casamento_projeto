@@ -1,47 +1,147 @@
-/* Variáveis de cores */
+/* ===========================================
+   RESET E VARIÁVEIS
+   =========================================== */
 :root {
-  --verde-elegante: #2a7f62;
-  --roxo-premium: #6a4c93;
+  --branco-offwhite: #fafafa;
+  --detalhe-dourado: #d4af37;
+  --botao-roxo-claro: #b19cd9;
+  --quartzo-rosa: #f7cac9;
   --branco-puro: #ffffff;
-  --creme-suave: #f5f0e6;
-  --destaque-dourado: #d4af37;
+  --rosa-escuro: #d8a1a4;
+  --sombra-suave: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --sombra-media: 0 12px 40px rgba(0, 0, 0, 0.15);
+  --sombra-forte: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos gerais */
-body {
-  font-family: 'Montserrat', sans-serif;
+* {
   margin: 0;
   padding: 0;
-  background-color: var(--creme-suave);
-  color: #333;
-  line-height: 1.6;
+  box-sizing: border-box;
 }
 
-/* Navegação */
-nav {
-  background-color: var(--roxo-premium);
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===========================================
+   PAPEL DE PAREDE (IMAGEM EM TODA A PÁGINA)
+   =========================================== */
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.papel-parede {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+/* IMAGEM COBRINDO TODA A PÁGINA */
+.imagem-fundo {
+  width: 100%;
+  height: 100%;
+  
+  /* Cobrir toda a página */
+  object-fit: cover;
+  object-position: center center;
+  
+  /* Qualidade máxima */
+  image-rendering: optimizeQuality;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Garantir cobertura total */
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  
+  /* Prioridade de carregamento */
+  loading: eager;
+  fetchpriority: high;
+}
+
+/* Overlay branco transparente para melhorar legibilidade */
+.overlay-fundo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+}
+
+/* ===========================================
+   CONTEÚDO SOBREPOSTO (TRANSPARENTE)
+   =========================================== */
+.conteudo-sobreposto {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===========================================
+   NAVEGAÇÃO FLUTUANTE (TRANSPARENTE)
+   =========================================== */
+.nav-flutuante {
+  background: transparent; /* transparente */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
   height: 80px;
-  position: relative;
-  z-index: 100;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-nav ul {
+.nav-flutuante ul {
   list-style: none;
+  display: flex;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 1rem;
 }
 
-/* Botão Lista de Presentes */
+.nav-flutuante a {
+  color: #5d415d;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.nav-flutuante a:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #7a5c7a;
+}
+
+/* ===========================================
+   BOTÕES (MANTIDOS)
+   =========================================== */
 .btn-presentes {
   display: inline-block;
-  background-color: var(--verde-elegante);
+  background-color: var(--botao-roxo-claro);
   color: var(--branco-puro) !important;
   padding: 12px 25px;
   border-radius: 30px;
@@ -49,21 +149,28 @@ nav ul {
   font-weight: 600;
   letter-spacing: 0.5px;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0 4px 15px rgba(42, 127, 98, 0.3);
+  box-shadow: 0 4px 15px rgba(177, 156, 217, 0.3);
   border: 2px solid transparent;
   font-family: 'Montserrat', sans-serif;
+  border-radius: 30px;
 }
 
 .btn-presentes:hover {
   background-color: transparent;
   border-color: var(--branco-puro);
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(42, 127, 98, 0.4);
+  box-shadow: 0 6px 20px rgba(177, 156, 217, 0.4);
 }
 
-/* Botão Confirmar Presença */
+.btn-presentes.grande {
+  padding: 15px 35px;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  font-weight: 700;
+}
+
 .btn-confirmar {
-  background: linear-gradient(135deg, #8a4fff 0%, var(--roxo-premium) 100%);
+  background: linear-gradient(135deg, var(--botao-roxo-claro) 0%, #9b87c9 100%);
   color: var(--branco-puro);
   padding: 14px 30px;
   border: none;
@@ -72,7 +179,7 @@ nav ul {
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0 4px 15px rgba(106, 76, 147, 0.3);
+  box-shadow: 0 4px 15px rgba(177, 156, 217, 0.3);
   text-transform: uppercase;
   font-size: 0.9rem;
   position: relative;
@@ -82,7 +189,7 @@ nav ul {
 
 .btn-confirmar:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(106, 76, 147, 0.4);
+  box-shadow: 0 6px 20px rgba(177, 156, 217, 0.4);
 }
 
 .btn-confirmar::before {
@@ -100,218 +207,628 @@ nav ul {
   left: 100%;
 }
 
-/* Estrutura Principal */
-.conteudo-principal {
-  display: grid;
-  grid-template-areas: 
-    "esquerda centro direita";
-  grid-template-columns: 300px 1fr 300px;
+/* ===========================================
+   LAYOUT UNIFICADO
+   =========================================== */
+.layout-unificado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1800px;
+  margin: 2rem auto 0;
+  padding: 0 2rem;
   gap: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  min-height: calc(100vh - 180px);
+  flex: 1;
 }
 
-.centro {
-  grid-area: centro;
+/* ===========================================
+   CARROSSÉIS FLUTUANTES (TRANSPARENTES)
+   =========================================== */
+.carrossel-flutuante {
+  width: 320px;
+  margin-top: 2rem;
+}
+
+.carrossel-esquerdo {
+  align-self: flex-start;
+  position: sticky;
+  top: 100px;
+}
+
+.carrossel-direito {
+  align-self: flex-start;
+  position: sticky;
+  top: 100px;
+}
+
+.legenda-carrossel {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1.2rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  text-align: center;
+  box-shadow: var(--sombra-suave);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.legenda-carrossel:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-media);
+}
+
+.legenda-carrossel h3 {
+  color: var(--rosa-escuro);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-family: 'Whisper', cursive;
+}
+
+.legenda-carrossel p {
+  color: #666666;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* ===========================================
+   CONTEÚDO CENTRAL FLUTUANTE (TRANSPARENTE)
+   =========================================== */
+.conteudo-central {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 0;
+  gap: 2.5rem;
+  opacity: 0.9;
 }
 
-/* Asides Laterais */
-.ladoesquerdo {
-  grid-area: esquerda;
-  position: sticky;
-  top: 20px;
-  height: fit-content;
-  align-self: start;
-}
-
-.ladodireito {
-  grid-area: direita;
-  position: sticky;
-  top: 20px;
-  height: fit-content;
-  align-self: start;
-}
-
-/* Fotos nos asides */
-.foto-noivos, .foto-local {
+.cronometro-flutuante {
   width: 100%;
-  height: 400px;
-  margin-top: 1rem;
-  border-radius: 8px;
-  overflow: hidden;
+  animation: float 6s ease-in-out infinite;
 }
 
-.foto-noivos img, .foto-local img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Conteúdo Central */
-header {
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-main {
-  width: 100%;
-  max-width: 800px;
-  background-color: var(--branco-puro);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+.mensagem-flutuante {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem;
+  border-radius: 20px;
   text-align: center;
-  border-top: 4px solid var(--destaque-dourado);
+  box-shadow: var(--sombra-media);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  width: 100%;
+  animation: slideUp 0.8s ease-out;
+  transition: all 0.3s ease;
 }
 
-main h2 {
-  color: var(--roxo-premium);
+.mensagem-flutuante:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-forte);
+}
+
+/* NOMES DOS NOIVOS */
+.nomes-noivos {
+  margin-bottom: 2.5rem;
+}
+
+.nome-principal {
+  font-family: 'Whisper', cursive;
+  font-size: 6.5rem;
+  color: var(--rosa-escuro);
+  font-weight: 400;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+}
+
+/* DATA DO CASAMENTO */
+.data-casamento {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(216, 161, 164, 0.3);
+}
+
+.data-destaque {
+  font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
+  color: var(--detalhe-dourado);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
 }
 
-main p {
-  color: #555;
-  margin: 1rem 0;
+.hora-casamento {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  color: #7a5c7a;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* LOCAL DO CASAMENTO */
+.local-casamento {
+  margin-bottom: 2.5rem;
+}
+
+.nome-igreja {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  color: var(--rosa-escuro);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.endereco-igreja {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 400;
+}
+
+/* ASSINATURA FINAL */
+.assinatura-final {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(216, 161, 164, 0.3);
+}
+
+.assinatura {
+  font-family: 'Whisper', cursive;
+  font-size: 2.8rem;
+  color: var(--botao-roxo-claro);
+  font-weight: 400;
+  letter-spacing: 3px;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================================
+   LISTA DE PRESENTES FLUTUANTE (TRANSPARENTE)
+   =========================================== */
+.lista-presentes-flutuante {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  animation: fadeIn 1s ease-out 0.5s both;
+}
+
+.convite-presentes {
+  background: rgba(212, 175, 55, 0.9); /* Dourado transparente */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--branco-puro);
+  text-align: center;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: var(--sombra-media);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.convite-presentes:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-forte);
+}
+
+.convite-presentes p {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* ===========================================
+   RODAPÉ FLUTUANTE (TRANSPARENTE)
+   =========================================== */
+.rodape-flutuante {
+  background: transparent;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-align: center;
+  padding: 2.5rem;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.contato-flutuante p {
+  margin: 0.8rem 0;
+  color: #5d415d;
+  font-weight: 500;
   font-size: 1.1rem;
 }
 
-/* Seção Lista de Presentes */
-.lista-presentes-container {
-  background: linear-gradient(135deg, var(--verde-elegante) 0%, #1e6b50 100%);
-  color: var(--branco-puro);
-  text-align: center;
-  padding: 2rem;
-  margin: 2rem auto;
-  max-width: 800px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.lista-presentes-container a {
-  margin-top: 1rem;
-}
-
-/* Rodapé */
-footer {
-  background-color: var(--roxo-premium);
-  color: var(--branco-puro);
-  text-align: center;
-  padding: 2rem;
-  margin-top: 3rem;
-}
-
-footer p {
-  margin: 0.5rem 0;
-}
-
-footer a {
-  color: var(--branco-puro);
+.link-dourado {
+  color: var(--detalhe-dourado) !important;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
   transition: all 0.3s;
+  font-size: 1.2rem;
 }
 
-footer a:hover {
-  color: var(--destaque-dourado);
+.link-dourado:hover {
+  text-decoration: underline;
+  color: #b8860b !important;
 }
 
+/* ===========================================
+   ANIMAÇÕES
+   =========================================== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
 
-/* Responsividade - Aqui fazemos a mágica */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+#saveTheDate {
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+
+/* ===========================================
+   RESPONSIVIDADE
+   =========================================== */
+@media (max-width: 1200px) {
+  .layout-unificado {
+    gap: 1.5rem;
+  }
+  
+  .carrossel-flutuante {
+    width: 280px;
+  }
+  
+  .nome-principal {
+    font-size: 4rem;
+  }
+  
+  .data-destaque {
+    font-size: 1.8rem;
+  }
+  
+  .nome-igreja {
+    font-size: 1.6rem;
+  }
+}
+
 @media (max-width: 1024px) {
-  .conteudo-principal {
-    grid-template-areas: 
-      "esquerda centro"
-      "direita centro";
-    grid-template-columns: 250px 1fr;
-  }
-  
-  .ladodireito {
-    grid-area: direita;
-    margin-top: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .conteudo-principal {
-    grid-template-areas: 
-      "centro"
-      "esquerda"
-      "direita";
-    grid-template-columns: 1fr;
-  }
-  
-  .ladoesquerdo, .ladodireito {
-    position: static;
-    width: 100%;
-    max-width: 600px;
-    margin: 1rem auto;
-  }
-  
-  .centro {
-    grid-area: centro;
-    padding: 1rem 0;
-  }
-}
-
-/* Estilização dos asides (mantém o mesmo) */
-.ladoesquerdo, .ladodireito {
-  padding: 1.5rem;
-  background-color: var(--branco-puro);
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-.ladoesquerdo {
-  border-top: 4px solid var(--verde-elegante);
-}
-
-.ladodireito {
-  border-top: 4px solid var(--roxo-premium);
-}
-
-/* Garante que as imagens não vazem */
-.foto-noivos, .foto-local {
-  width: 100%;
-  height: auto;
-  max-height: 400px;
-  margin-top: 1rem;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.foto-noivos img, .foto-local img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-@media (max-width: 768px) {
-  nav {
+  .layout-unificado {
     flex-direction: column;
-    padding: 1rem;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 1rem;
+  }
+  
+  .carrossel-flutuante {
+    width: 100%;
+    max-width: 500px;
+    position: static;
+    margin-top: 0;
+  }
+  
+  .carrossel-esquerdo {
+    order: 2;
+  }
+  
+  .conteudo-central {
+    order: 1;
+  }
+  
+  .carrossel-direito {
+    order: 3;
+  }
+  
+  .mensagem-flutuante {
+    padding: 2.5rem;
+  }
+  
+  .nome-principal {
+    font-size: 3.5rem;
+  }
+  
+  .data-destaque {
+    font-size: 1.6rem;
+  }
+  
+  .nome-igreja {
+    font-size: 1.4rem;
+  }
+  
+  .assinatura {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-flutuante {
+    flex-direction: column;
+    padding: 1.2rem;
     height: auto;
+    gap: 1.2rem;
   }
   
-  nav ul {
-    margin-bottom: 1rem;
+  .layout-unificado {
+    padding: 0 1rem;
+    margin: 1rem auto;
+    gap: 2.5rem;
   }
   
-  .foto-noivos, .foto-local {
-    height: 300px;
+  .mensagem-flutuante {
+    padding: 2rem;
+    border-radius: 16px;
+  }
+  
+  .nome-principal {
+    font-size: 3rem;
+  }
+  
+  .data-destaque {
+    font-size: 1.4rem;
+  }
+  
+  .hora-casamento {
+    font-size: 1.1rem;
+  }
+  
+  .nome-igreja {
+    font-size: 1.3rem;
+  }
+  
+  .endereco-igreja {
+    font-size: 1rem;
+  }
+  
+  .assinatura {
+    font-size: 2.2rem;
+  }
+  
+  .convite-presentes {
+    padding: 2.5rem;
+    border-radius: 16px;
+  }
+  
+  .convite-presentes p {
+    font-size: 1.3rem;
+  }
+  
+  .lista-presentes-flutuante {
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .rodape-flutuante {
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout-unificado {
+    padding: 0 0.5rem;
+    gap: 2rem;
+  }
+  
+  .mensagem-flutuante {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .nome-principal {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .data-destaque {
+    font-size: 1.2rem;
+  }
+  
+  .hora-casamento {
+    font-size: 1rem;
+  }
+  
+  .nome-igreja {
+    font-size: 1.1rem;
+  }
+  
+  .endereco-igreja {
+    font-size: 0.9rem;
+  }
+  
+  .assinatura {
+    font-size: 2rem;
+    letter-spacing: 2px;
   }
   
   .btn-presentes, .btn-confirmar {
     padding: 10px 20px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
+  
+  .btn-presentes.grande {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+  
+  .convite-presentes {
+    padding: 2rem;
+  }
+  
+  .convite-presentes p {
+    font-size: 1.1rem;
+  }
+  
+  .legenda-carrossel h3 {
+    font-size: 1.3rem;
+  }
+  
+  .legenda-carrossel p {
+    font-size: 1rem;
+  }
+  
+  .contato-flutuante p {
+    font-size: 1rem;
+  }
+  
+  .link-dourado {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===========================================
+   BOTÕES ADICIONAIS
+   =========================================== */
+
+/* Botão Voltar ao Início */
+.btn-voltar {
+    display: inline-block;
+    background: rgba(247, 202, 201, 0.9);
+    color: var(--branco-puro) !important;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 15px rgba(247, 202, 201, 0.3);
+    border: 2px solid transparent;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-voltar:hover {
+    background: transparent;
+    border-color: var(--branco-puro);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(247, 202, 201, 0.4);
+}
+
+.btn-voltar::before {
+    content: '← ';
+    font-weight: bold;
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.btn-voltar:hover::before {
+    transform: translateX(-3px);
+}
+
+/* Animação de brilho no hover */
+.btn-voltar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-voltar:hover::after {
+    left: 100%;
+}
+
+/* Botão Voltar na lista de presentes (se quiser consistência) */
+.lista_de_presentes .btn-voltar {
+    background: rgba(212, 175, 55, 0.9); /* Dourado */
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.lista_de_presentes .btn-voltar:hover {
+    background: transparent;
+    border-color: var(--detalhe-dourado);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    color: var(--detalhe-dourado) !important;
+}
+
+/* ===========================================
+   BOTÕES ADICIONAIS PARA CONSISTÊNCIA
+   =========================================== */
+
+.btn-voltar {
+    display: inline-block;
+    background: rgba(247, 202, 201, 0.9);
+    color: var(--branco-puro) !important;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 15px rgba(247, 202, 201, 0.3);
+    border: 2px solid transparent;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-voltar:hover {
+    background: transparent;
+    border-color: var(--branco-puro);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(247, 202, 201, 0.4);
+}
+
+.btn-voltar::before {
+    content: '← ';
+    font-weight: bold;
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.btn-voltar:hover::before {
+    transform: translateX(-3px);
+}
+
+.btn-voltar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-voltar:hover::after {
+    left: 100%;
 }

@@ -1,70 +1,306 @@
-// login.js - Versão corrigida e simplificada
+// login.js - Versão com Mensagem Acolhedora
 document.addEventListener('DOMContentLoaded', () => {
     const btnConfirmar = document.getElementById('btnConfirmar');
-    let isProcessing = false;
-
-    // Verifica se o botão existe
+    
     if (!btnConfirmar) {
-        console.error('Botão "btnConfirmar" não encontrado!');
+        console.warn('Botão "Confirmar Presença" não encontrado');
         return;
     }
 
-    // Adiciona o event listener corretamente
-    btnConfirmar.addEventListener('click', async () => {
-        if (isProcessing) return;
+    // Adiciona evento ao botão
+    btnConfirmar.addEventListener('click', async (e) => {
+        e.preventDefault();
         
-        const email = prompt("Digite seu e-mail para confirmar presença:");
-        if (!email) return;
-
-        isProcessing = true;
-        btnConfirmar.disabled = true;
-
-        try {
-            const { error } = await supabase.auth.signInWithOtp({
-                email: email.trim().toLowerCase(),
-                options: {
-                    emailRedirectTo: window.location.origin + '/confirmacao.html'
-                }
-            });
-
-            if (error) throw error;
-            
-            showFeedback(`✔ Link enviado para <strong>${email}</strong>`, 'success');
-        } catch (error) {
-            console.error("Erro:", error);
-            showFeedback(`Erro: ${error.message}`, 'error');
-        } finally {
-            isProcessing = false;
-            btnConfirmar.disabled = false;
-        }
+        // Modal personalizado para coletar email
+        mostrarModalColetaEmail();
     });
 
-    // Função para mostrar feedback
-    function showFeedback(message, type) {
-        // Remove feedbacks anteriores
-        const oldFeedback = document.getElementById('login-feedback');
-        if (oldFeedback) oldFeedback.remove();
-
-        const feedback = document.createElement('div');
-        feedback.id = 'login-feedback';
-        feedback.innerHTML = message;
-        feedback.className = `feedback feedback-${type}`;
-        feedback.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px;
-            color: white;
-            border-radius: 5px;
-            z-index: 1000;
-            animation: fadeIn 0.5s;
-            ${type === 'success' ? 'background: #4CAF50;' : 'background: #f44336;'}
-        `;
-        document.body.appendChild(feedback);
+    // Função para mostrar modal de coleta de email
+    function mostrarModalColetaEmail() {
+        // Remove modal existente se houver
+        const modalExistente = document.getElementById('modal-email-casamento');
+        if (modalExistente) modalExistente.remove();
         
-        setTimeout(() => {
-            feedback.style.animation = 'fadeOut 0.5s';
-            setTimeout(() => feedback.remove(), 500);
-        }, 3000);
+        // Cria modal
+        const modal = document.createElement('div');
+        modal.id = 'modal-email-casamento';
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        `;
+        
+        modal.innerHTML = `
+            <div class="modal-content-email" style="
+                background:rgba(255,255,255,0.95);
+                backdrop-filter: blur(15px);
+                padding: 3rem;
+                border-radius: 20px;
+                max-width: 500px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                border: 1px solid rgba(255,255,255,0.3);
+                position: relative;
+            ">
+                <button class="close-modal" style="
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    color: #d8a1a4;
+                    cursor: pointer;
+                ">&times;</button>
+                
+                <div class="modal-icon" style="
+                    font-size: 4rem;
+                    margin-bottom: 1.5rem;
+                    animation: float 3s ease-in-out infinite;
+                ">💌</div>
+                
+                <h3 style="
+                    font-family: 'Whisper', cursive;
+                    font-size: 2.5rem;
+                    color: #d8a1a4;
+                    margin-bottom: 1rem;
+                ">Querido(a) Convidado(a)</h3>
+                
+                <p style="
+                    color: #666;
+                    line-height: 1.6;
+                    margin-bottom: 2rem;
+                    font-size: 1.1rem;
+                ">
+                    Nossa alegria será completa com sua presença! 💖<br>
+                    Para confirmar, digite seu e-mail abaixo.<br>
+                    Enviaremos um link especial para acesso ao nosso sistema de confirmação.
+                </p>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <input type="email" id="inputEmailCasamento" placeholder="seu@email.com" style="
+                        width: 100%;
+                        padding: 15px;
+                        border: 2px solid rgba(216,161,164,0.3);
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        background: rgba(255,255,255,0.9);
+                        transition: all 0.3s;
+                    ">
+                    <p style="
+                        color: #999;
+                        font-size: 0.9rem;
+                        margin-top: 0.5rem;
+                        text-align: left;
+                    ">
+                        🔒 Seus dados são importantes para nós e serão usados apenas para este momento especial.
+                    </p>
+                </div>
+                
+                <button id="btnEnviarMagicLink" style="
+                    background: linear-gradient(135deg, #d8a1a4 0%, #b19cd9 100%);
+                    color: white;
+                    border: none;
+                    padding: 15px 30px;
+                    border-radius: 30px;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    width: 100%;
+                    margin-bottom: 1rem;
+                ">
+                    <span class="btn-text">Enviar Link de Confirmação</span>
+                    <span class="btn-icon" style="margin-left: 10px;">✨</span>
+                </button>
+                
+                <p style="
+                    color: #999;
+                    font-size: 0.85rem;
+                    line-height: 1.4;
+                ">
+                    <small>✨ O link será válido por 24 horas<br>
+                    💫 Use o mesmo e-mail do convite<br>
+                    🌟 Se não receber, verifique sua caixa de spam</small>
+                </p>
+                
+                <div id="feedback-magic-link" style="
+                    margin-top: 1.5rem;
+                    padding: 1rem;
+                    border-radius: 10px;
+                    display: none;
+                "></div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Eventos do modal
+        const closeBtn = modal.querySelector('.close-modal');
+        const enviarBtn = modal.querySelector('#btnEnviarMagicLink');
+        const emailInput = modal.querySelector('#inputEmailCasamento');
+        const feedbackDiv = modal.querySelector('#feedback-magic-link');
+        
+        // Fechar modal
+        closeBtn.addEventListener('click', () => modal.remove());
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.remove();
+        });
+        
+        // Enviar Magic Link
+        enviarBtn.addEventListener('click', async () => {
+            const email = emailInput.value.trim().toLowerCase();
+            
+            if (!email) {
+                mostrarFeedback('Por favor, digite seu e-mail', 'error');
+                return;
+            }
+            
+            if (!validarEmail(email)) {
+                mostrarFeedback('Digite um e-mail válido', 'error');
+                return;
+            }
+            
+            // Desabilita botão
+            enviarBtn.disabled = true;
+            enviarBtn.querySelector('.btn-text').textContent = 'Enviando...';
+            
+            try {
+                // Verifica se já está na lista de convidados (opcional)
+                const { data: convidado } = await supabase
+                    .from('convidados_autorizados')
+                    .select('nome')
+                    .eq('email', email)
+                    .maybeSingle();
+                
+                // Envia o Magic Link com mensagem personalizada
+                const { error } = await supabase.auth.signInWithOtp({
+                    email: email,
+                    options: {
+                        emailRedirectTo: `${window.location.origin}/confirmacao.html`,
+                        data: {
+                            nome_convidado: convidado?.nome || 'Convidado Especial',
+                            tipo: 'confirmacao_casamento'
+                        }
+                    }
+                });
+                
+                if (error) throw error;
+                
+                // Mensagem de sucesso calorosa
+                mostrarFeedback(`
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎉</div>
+                        <h4 style="color: #2E7D32; margin-bottom: 1rem;">Link Enviado com Sucesso!</h4>
+                        <p style="color: #666;">
+                            <strong>${convidado?.nome || 'Querido(a)'}</strong>, enviamos um link especial para:<br>
+                            <strong>${email}</strong>
+                        </p>
+                        <p style="color: #666; margin-top: 1rem;">
+                            💝 <strong>Aguardamos ansiosos sua confirmação!</strong><br>
+                            📧 Verifique sua caixa de entrada e também o spam.
+                        </p>
+                    </div>
+                `, 'success');
+                
+                // Fecha modal após 5 segundos
+                setTimeout(() => {
+                    modal.remove();
+                }, 5000);
+                
+            } catch (error) {
+                console.error('Erro ao enviar Magic Link:', error);
+                
+                let mensagemErro = 'Erro ao enviar link. Tente novamente.';
+                
+                if (error.message.includes('rate limit') || error.message.includes('too many requests')) {
+                    mensagemErro = `
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">⏰</div>
+                            <p style="color: #C62828;">
+                                <strong>Muitas tentativas recentes</strong><br>
+                                Por favor, aguarde 1 hora ou<br>
+                                entre em contato conosco diretamente.
+                            </p>
+                            <p style="color: #666; margin-top: 1rem;">
+                                💌 <strong>casamentoD&S@contato.com</strong>
+                            </p>
+                        </div>
+                    `;
+                }
+                
+                mostrarFeedback(mensagemErro, 'error');
+                
+                // Reabilita botão após erro
+                setTimeout(() => {
+                    enviarBtn.disabled = false;
+                    enviarBtn.querySelector('.btn-text').textContent = 'Enviar Link de Confirmação';
+                }, 2000);
+            }
+        });
+        
+        // Foco no input
+        setTimeout(() => emailInput.focus(), 300);
+        
+        // Função para mostrar feedback
+        function mostrarFeedback(mensagem, tipo) {
+            feedbackDiv.innerHTML = mensagem;
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.style.background = tipo === 'success' 
+                ? 'rgba(76, 175, 80, 0.1)' 
+                : 'rgba(244, 67, 54, 0.1)';
+            feedbackDiv.style.border = tipo === 'success'
+                ? '1px solid rgba(76, 175, 80, 0.3)'
+                : '1px solid rgba(244, 67, 54, 0.3)';
+            feedbackDiv.style.color = tipo === 'success' ? '#2E7D32' : '#C62828';
+        }
+        
+        // Validação de email
+        function validarEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
     }
+
+    // Adiciona estilos dinâmicos
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        #inputEmailCasamento:focus {
+            outline: none;
+            border-color: #d8a1a4 !important;
+            box-shadow: 0 0 0 3px rgba(216, 161, 164, 0.2) !important;
+        }
+        
+        #btnEnviarMagicLink:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(177, 156, 217, 0.3);
+        }
+        
+        #btnEnviarMagicLink:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    console.log('Sistema de Magic Link acolhedor carregado!');
 });

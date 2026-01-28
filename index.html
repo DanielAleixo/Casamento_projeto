@@ -4,97 +4,192 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nosso Casamento D & S</title>
+  <title>Daniel & Sabrina - Nosso Casamento</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Whisper&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Whisper&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/style_cronometro.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/carrossel.css" />
 </head>
 
 <body>
-  <nav>
-    <ul>
-      <li><a href="lista_de_presentes.html" class="btn-presentes">Lista de Presentes</a></li>
-    </ul>
-    <button id="btnConfirmar" class="btn-confirmar">Confirmar Presença</button>
-  </nav>
+  <!-- IMAGEM DE FUNDO COMO PAPEL DE PAREDE -->
+  <div class="papel-parede">
+    <img src="images/noivos9.jpeg" alt="Fundo do casamento" class="imagem-fundo">
+    <div class="overlay-fundo"></div>
+  </div>
 
-  <div class="conteudo-principal">
-    <!-- Aside Esquerdo (Noivos) -->
-    <aside class="ladoesquerdo">
-      <h1 id="noivos">Os Noivos</h1>
-      <p>Daniel e Sabrina</p>
-      <div class="foto-noivos">
-        <img src="images/noivos.jpg" alt="Foto dos noivos" />
-      </div>
-    </aside>
+  <!-- CONTEÚDO SOBREPOSTO -->
+  <div class="conteudo-sobreposto">
+    <!-- Navegação flutuante -->
+    <nav class="nav-flutuante">
+      <ul>
+        <li><a href="lista_de_presentes.html" class="btn-presentes">Lista de Presentes</a></li>
+      </ul>
+      <button id="btnConfirmar" class="btn-confirmar">Confirmar Presença</button>
+    </nav>
 
-    <!-- Conteúdo Central -->
-    <div class="centro">
-      <header>
-        <div class="cronometro-container">
-          <h1>Contagem Regressiva</h1>
-          <div class="cronometro" id="cronometro">
-            <div class="cronometro-item">
-              <span class="cronometro-numero" id="dias">00</span>
-              <span class="cronometro-label">Dias</span>
-            </div>
-            <div class="cronometro-item">
-              <span class="cronometro-numero" id="horas">00</span>
-              <span class="cronometro-label">Horas</span>
-            </div>
-            <div class="cronometro-item">
-              <span class="cronometro-numero" id="minutos">00</span>
-              <span class="cronometro-label">Minutos</span>
-            </div>
-            <div class="cronometro-item">
-              <span class="cronometro-numero" id="segundos">00</span>
-              <span class="cronometro-label">Segundos</span>
+    <!-- Layout principal sem divisões -->
+    <div class="layout-unificado">
+      
+      <!-- Carrossel Esquerdo (Noivos) -->
+      <div class="carrossel-flutuante carrossel-esquerdo">
+        <div class="carrossel-retrato" id="carrossel-noivos">
+          <div class="carrossel-wrapper">
+            <div class="carrossel-track">
+              <div class="carrossel-slide">
+                <img src="images/noivos1.jpeg" alt="Foto dos noivos 1" class="foto-retrato" loading="lazy">
+              </div>
+              <div class="carrossel-slide">
+                <img src="images/noivos2.jpeg" alt="Foto dos noivos 2" class="foto-retrato" loading="lazy">
+              </div>
+              <div class="carrossel-slide">
+                <img src="images/noivos3.jpeg" alt="Foto dos noivos 3" class="foto-retrato" loading="lazy">
+              </div>
+              <div class="carrossel-slide">
+                <img src="images/noivos4.jpeg" alt="Foto dos noivos 4" class="foto-retrato" loading="lazy">
+              </div>
+              <div class="carrossel-slide">
+                <img src="images/noivos5.jpeg" alt="Foto dos noivos 5" class="foto-retrato" loading="lazy">
+              </div>
+              <div class="carrossel-slide">
+                <img src="images/noivos6.jpeg" alt="Foto dos noivos 6" class="foto-retrato" loading="lazy">
+              </div>
+              <div class="carrossel-slide">
+                <img src="images/noivos7.jpeg" alt="Foto dos noivos 7" class="foto-retrato" loading="lazy">
+              </div>
+              <div class="carrossel-slide">
+                <img src="images/noivos8.jpeg" alt="Foto dos noivos 8" class="foto-retrato" loading="lazy">
+              </div>
             </div>
           </div>
-          <p id="mensagem"></p>
+          <button class="carrossel-btn prev-btn">‹</button>
+          <button class="carrossel-btn next-btn">›</button>
+          <div class="carrossel-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+            <span class="dot" data-index="5"></span>
+            <span class="dot" data-index="6"></span>
+            <span class="dot" data-index="7"></span>
+          </div>
         </div>
-      </header>
-      
-      <main>
-        <h2>Estamos muito felizes em compartilhar este momento especial com você!</h2>
-        <p>Data: 25 de dezembro de 2026</p>
-        <p>Local: Igreja São José, Rua das Flores, 123</p>
-        <p>Horário: 16:00</p>
-        <p>Esperamos vê-lo lá!</p>
-        <p>Com amor, D & S</p>
-      </main>
+        <div class="legenda-carrossel">
+          <h3>Os Noivos</h3>
+        </div>
+      </div>
+
+      <!-- Conteúdo Central flutuante -->
+      <div class="conteudo-central">
+        <div class="cronometro-flutuante">
+          <div class="cronometro-container">
+            <h1>Contagem Regressiva</h1>
+            <div class="cronometro" id="cronometro">
+              <div class="cronometro-item">
+                <span class="cronometro-numero" id="dias">00</span>
+                <span class="cronometro-label">Dias</span>
+              </div>
+              <div class="cronometro-item">
+                <span class="cronometro-numero" id="horas">00</span>
+                <span class="cronometro-label">Horas</span>
+              </div>
+              <div class="cronometro-item">
+                <span class="cronometro-numero" id="minutos">00</span>
+                <span class="cronometro-label">Minutos</span>
+              </div>
+              <div class="cronometro-item">
+                <span class="cronometro-numero" id="segundos">00</span>
+                <span class="cronometro-label">Segundos</span>
+              </div>
+            </div>
+            <p id="mensagem"></p>
+          </div>
+        </div>
+
+        <!-- Mensagem principal flutuante - SIMPLIFICADA -->
+        <div class="mensagem-flutuante">
+          <div class="nomes-noivos">
+            <h2 class="nome-principal">Daniel & Sabrina</h2>
+          </div>
+          
+          <div class="data-casamento">
+            <p class="data-destaque">25 de Dezembro de 2026</p>
+            <p class="hora-casamento">às 16:00 horas</p>
+          </div>
+          
+          <div class="local-casamento">
+            <p class="nome-igreja">Santuário Nossa Senhora da Penha</p>
+            <p class="endereco-igreja">São João da Barra - Atafona, RJ</p>
+          </div>
+          
+          <div class="assinatura-final">
+            <p class="assinatura">Com amor, D & S</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carrossel Direito (Local) -->
+      <div class="carrossel-flutuante carrossel-direito">
+        <div class="carrossel-retrato" id="carrossel-local">
+          <div class="carrossel-wrapper">
+            <div class="carrossel-track">
+              <div class="carrossel-slide">
+                <img src="images/local1.jpeg" alt="Santuário Nossa Senhora da Penha vista 1" class="foto-retrato" loading="lazy">
+              </div>
+              <div class="carrossel-slide">
+                <img src="images/local2.jpeg" alt="Santuário Nossa Senhora da Penha vista 2" class="foto-retrato" loading="lazy">
+              </div>
+              <div class="carrossel-slide">
+                <img src="images/local3.jpeg" alt="Santuário Nossa Senhora da Penha vista 3" class="foto-retrato" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <button class="carrossel-btn prev-btn">‹</button>
+          <button class="carrossel-btn next-btn">›</button>
+          <div class="carrossel-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+          </div>
+        </div>
+        <div class="legenda-carrossel">
+          <h3>O Local</h3>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Aside Direito (Local) -->
-    <aside class="ladodireito">
-      <h1 id="local">O Local</h1>
-      <p>Igreja São José</p>
-      <div class="foto-local">
-        <img src="images/local.jpg" alt="Foto do local" />
+    <!-- Lista de Presentes flutuante -->
+    <div class="lista-presentes-flutuante">
+      <div class="convite-presentes">
+        <p>Confira nossa lista de presentes!</p>
+        <a href="lista_de_presentes.html" class="btn-presentes grande">Ver Lista Completa</a>
       </div>
-    </aside>
-  </div>
+    </div>
 
-  <div class="lista-presentes-container">
-    Confira nossa lista de presentes!
-    <a href="lista_de_presentes.html" class="btn-presentes">Ver Lista Completa</a>
-  </div>
+    <!-- Rodapé flutuante -->
+    <footer class="rodape-flutuante">
+      <div class="contato-flutuante">
+        <p>
+          <a href="#" id="saveTheDate" class="link-dourado">Save the Date!</a>
+        </p>
+        <p>Daniel & Sabrina - Nosso Casamento</p>
+        <p>📧 casamentoD&S@contato.com</p>
+      </div>
+    </footer>
 
-  <footer>
-    <p>
-      <a href="#" id="saveTheDate">Save the Date!</a>
-    </p>
-    <p>Nosso Casamento D & S</p>
-    <p>Contato: casamentoD&S@contato.com</p>
-  </footer>
+  </div>
 
   <script src="js/cronometro.js"></script>
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="js/supabaseClient.js"></script>
   <script src="js/login.js"></script>
   <script src="js/calendarHandler.js"></script>
+  <script src="js/carrossel.js"></script>
 </body>
 
 </html>
