@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daniel & Sabrina - Confirmação de Presença</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Whisper&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Whisper&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/style_cronometro.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/confirmacao.css" />
 </head>
 
 <body>
-  <!-- IMAGEM DE FUNDO COMO PAPEL DE PAREDE -->
   <div class="papel-parede">
     <img src="images/noivos9.jpeg" alt="Fundo do casamento" class="imagem-fundo">
     <div class="overlay-fundo"></div>
   </div>
 
-  <!-- CONTEÚDO SOBREPOSTO -->
   <div class="conteudo-sobreposto">
-    <!-- Navegação flutuante -->
     <nav class="nav-flutuante">
       <ul>
         <li><a href="index.html" class="btn-voltar">Voltar ao Início</a></li>
@@ -29,10 +28,8 @@
       </ul>
     </nav>
 
-    <!-- Conteúdo Principal -->
     <main class="conteudo-confirmacao">
-      
-      <!-- Cronômetro -->
+
       <div class="cronometro-container-confirmacao">
         <h1>Contagem Regressiva</h1>
         <div class="cronometro" id="cronometro">
@@ -56,7 +53,6 @@
         <p id="mensagem"></p>
       </div>
 
-      <!-- Título Principal -->
       <div class="cabecalho-confirmacao">
         <h1 class="titulo-principal">Confirme sua Presença!</h1>
         <p class="mensagem-intro">
@@ -64,10 +60,9 @@
         </p>
       </div>
 
-      <!-- Formulário de Confirmação ORIGINAL -->
       <form id="formPresenca" class="formulario-confirmacao">
         <div id="feedback-mensagem" class="feedback"></div>
-        
+
         <div class="form-group">
           <label for="nome" class="form-label">Nome Completo</label>
           <input type="text" id="nome" placeholder="Seu nome" required />
@@ -93,14 +88,13 @@
         </div>
 
         <p class="dica-formulario">
-          🔍 Digite <strong>exatamente</strong> o nome e e-mail do seu convite. 
+          🔍 Digite <strong>exatamente</strong> o nome e e-mail do seu convite.
           Caso tenha dúvidas, entre em contato: casamentoD&S@contato.com
         </p>
       </form>
 
     </main>
 
-    <!-- Rodapé flutuante -->
     <footer class="rodape-flutuante">
       <div class="contato-flutuante">
         <p>
@@ -119,4 +113,5 @@
   <script src="js/confirmacao.js"></script>
   <script src="js/calendarHandler.js"></script>
 </body>
+
 </html>

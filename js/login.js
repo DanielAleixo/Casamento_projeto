@@ -1,27 +1,21 @@
-// login.js - Versão com Mensagem Acolhedora
 document.addEventListener('DOMContentLoaded', () => {
     const btnConfirmar = document.getElementById('btnConfirmar');
-    
+
     if (!btnConfirmar) {
         console.warn('Botão "Confirmar Presença" não encontrado');
         return;
     }
 
-    // Adiciona evento ao botão
     btnConfirmar.addEventListener('click', async (e) => {
         e.preventDefault();
-        
-        // Modal personalizado para coletar email
+
         mostrarModalColetaEmail();
     });
 
-    // Função para mostrar modal de coleta de email
     function mostrarModalColetaEmail() {
-        // Remove modal existente se houver
         const modalExistente = document.getElementById('modal-email-casamento');
         if (modalExistente) modalExistente.remove();
-        
-        // Cria modal
+
         const modal = document.createElement('div');
         modal.id = 'modal-email-casamento';
         modal.style.cssText = `
@@ -38,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             z-index: 10000;
             animation: fadeIn 0.3s ease;
         `;
-        
+
         modal.innerHTML = `
             <div class="modal-content-email" style="
                 background:rgba(255,255,255,0.95);
@@ -142,48 +136,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 "></div>
             </div>
         `;
-        
+
         document.body.appendChild(modal);
-        
-        // Eventos do modal
+
         const closeBtn = modal.querySelector('.close-modal');
         const enviarBtn = modal.querySelector('#btnEnviarMagicLink');
         const emailInput = modal.querySelector('#inputEmailCasamento');
         const feedbackDiv = modal.querySelector('#feedback-magic-link');
-        
-        // Fechar modal
+
         closeBtn.addEventListener('click', () => modal.remove());
         modal.addEventListener('click', (e) => {
             if (e.target === modal) modal.remove();
         });
-        
-        // Enviar Magic Link
+
         enviarBtn.addEventListener('click', async () => {
             const email = emailInput.value.trim().toLowerCase();
-            
+
             if (!email) {
                 mostrarFeedback('Por favor, digite seu e-mail', 'error');
                 return;
             }
-            
+
             if (!validarEmail(email)) {
                 mostrarFeedback('Digite um e-mail válido', 'error');
                 return;
             }
-            
-            // Desabilita botão
+
             enviarBtn.disabled = true;
             enviarBtn.querySelector('.btn-text').textContent = 'Enviando...';
-            
+
             try {
-                // Verifica se já está na lista de convidados (opcional)
                 const { data: convidado } = await supabase
                     .from('convidados_autorizados')
                     .select('nome')
                     .eq('email', email)
                     .maybeSingle();
-                
-                // Envia o Magic Link com mensagem personalizada
+
                 const { error } = await supabase.auth.signInWithOtp({
                     email: email,
                     options: {
@@ -194,10 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 });
-                
+
                 if (error) throw error;
-                
-                // Mensagem de sucesso calorosa
+
                 mostrarFeedback(`
                     <div style="text-align: center;">
                         <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎉</div>
@@ -212,17 +199,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         </p>
                     </div>
                 `, 'success');
-                
-                // Fecha modal após 5 segundos
+
                 setTimeout(() => {
                     modal.remove();
                 }, 5000);
-                
+
             } catch (error) {
                 console.error('Erro ao enviar Magic Link:', error);
-                
+
                 let mensagemErro = 'Erro ao enviar link. Tente novamente.';
-                
+
                 if (error.message.includes('rate limit') || error.message.includes('too many requests')) {
                     mensagemErro = `
                         <div style="text-align: center;">
@@ -238,40 +224,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `;
                 }
-                
+
                 mostrarFeedback(mensagemErro, 'error');
-                
-                // Reabilita botão após erro
+
                 setTimeout(() => {
                     enviarBtn.disabled = false;
                     enviarBtn.querySelector('.btn-text').textContent = 'Enviar Link de Confirmação';
                 }, 2000);
             }
         });
-        
-        // Foco no input
+
         setTimeout(() => emailInput.focus(), 300);
-        
-        // Função para mostrar feedback
+
         function mostrarFeedback(mensagem, tipo) {
             feedbackDiv.innerHTML = mensagem;
             feedbackDiv.style.display = 'block';
-            feedbackDiv.style.background = tipo === 'success' 
-                ? 'rgba(76, 175, 80, 0.1)' 
+            feedbackDiv.style.background = tipo === 'success'
+                ? 'rgba(76, 175, 80, 0.1)'
                 : 'rgba(244, 67, 54, 0.1)';
             feedbackDiv.style.border = tipo === 'success'
                 ? '1px solid rgba(76, 175, 80, 0.3)'
                 : '1px solid rgba(244, 67, 54, 0.3)';
             feedbackDiv.style.color = tipo === 'success' ? '#2E7D32' : '#C62828';
         }
-        
-        // Validação de email
+
         function validarEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
     }
 
-    // Adiciona estilos dinâmicos
     const style = document.createElement('style');
     style.textContent = `
         @keyframes fadeIn {
@@ -301,6 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     `;
     document.head.appendChild(style);
-    
+
     console.log('Sistema de Magic Link acolhedor carregado!');
 });

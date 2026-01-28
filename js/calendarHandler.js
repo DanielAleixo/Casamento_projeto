@@ -1,7 +1,6 @@
-// calendarHandler.js - Código atualizado com dados corretos
 document.addEventListener('DOMContentLoaded', () => {
     const saveTheDateBtn = document.getElementById('saveTheDate');
-    
+
     if (saveTheDateBtn) {
         saveTheDateBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -10,22 +9,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addToCalendar() {
-        // Dados do evento - CORRIGIDOS com os dados do seu casamento
+
         const eventData = {
             title: "Casamento Daniel & Sabrina",
             description: "Venha celebrar nosso casamento! Com amor, D & S",
             location: "Santuário Nossa Senhora da Penha, São João da Barra - Atafona, RJ",
-            start: "2026-12-25T16:00:00-03:00", // 25 de Dezembro de 2026, 16:00
-            end: "2026-12-25T20:00:00-03:00"    // Até 20:00
+            start: "2026-12-25T16:00:00-03:00",
+            end: "2026-12-25T20:00:00-03:00"
         };
 
-        // URL para Google Calendar
+
         const startDate = formatDateForGoogle(eventData.start);
         const endDate = formatDateForGoogle(eventData.end);
-        
+
         const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventData.title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(eventData.description)}&location=${encodeURIComponent(eventData.location)}&sf=true&output=xml`;
-        
-        // URL para Apple Calendar
+
+
         const appleCalendarUrl = `data:text/calendar;charset=utf8,BEGIN:VCALENDAR
 VERSION:2.0
 BEGIN:VEVENT
@@ -37,17 +36,17 @@ DESCRIPTION:${eventData.description}
 LOCATION:${eventData.location}
 END:VEVENT
 END:VCALENDAR`;
-        
-        // URL para Outlook
+
+
         const outlookCalendarUrl = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(eventData.title)}&body=${encodeURIComponent(eventData.description)}&location=${encodeURIComponent(eventData.location)}&startdt=${eventData.start}&enddt=${eventData.end}`;
-        
-        // Detecção de dispositivo e sistema operacional
+
+
         const userAgent = navigator.userAgent.toLowerCase();
         const isIOS = /iphone|ipad|ipod/.test(userAgent);
         const isMac = /macintosh|mac os x/.test(userAgent);
         const isAndroid = /android/.test(userAgent);
-        
-        // Mostrar opções de calendário
+
+
         mostrarOpcoesCalendario({
             google: googleCalendarUrl,
             apple: appleCalendarUrl,
@@ -57,19 +56,19 @@ END:VCALENDAR`;
             isAndroid: isAndroid
         });
     }
-    
+
     function formatDateForGoogle(dateString) {
         const date = new Date(dateString);
         return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
     }
-    
+
     function formatDateForApple(dateString) {
         const date = new Date(dateString);
         return date.toISOString().replace(/[-:.]/g, '').slice(0, -1) + 'Z';
     }
-    
+
     function mostrarOpcoesCalendario(opcoes) {
-        // Cria modal de opções
+
         const modal = document.createElement('div');
         modal.style.cssText = `
             position: fixed;
@@ -83,7 +82,7 @@ END:VCALENDAR`;
             align-items: center;
             z-index: 10000;
         `;
-        
+
         const modalContent = document.createElement('div');
         modalContent.style.cssText = `
             background: white;
@@ -94,7 +93,7 @@ END:VCALENDAR`;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         `;
-        
+
         modalContent.innerHTML = `
             <h3 style="color: #d8a1a4; margin-bottom: 1.5rem;">Adicionar ao Calendário</h3>
             <p style="margin-bottom: 1.5rem; color: #666;">Escolha seu calendário preferido:</p>
@@ -122,11 +121,11 @@ END:VCALENDAR`;
                 </button>
             </div>
         `;
-        
+
         modal.appendChild(modalContent);
         document.body.appendChild(modal);
-        
-        // Fechar modal ao clicar fora
+
+
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.remove();

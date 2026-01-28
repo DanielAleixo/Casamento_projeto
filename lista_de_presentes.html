@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daniel & Sabrina - Lista de Presentes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Whisper&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Whisper&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/style_cronometro.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/carrossel.css" />
@@ -14,15 +16,12 @@
 </head>
 
 <body>
-  <!-- IMAGEM DE FUNDO COMO PAPEL DE PAREDE -->
   <div class="papel-parede">
     <img src="images/noivos9.jpeg" alt="Fundo do casamento" class="imagem-fundo">
     <div class="overlay-fundo"></div>
   </div>
 
-  <!-- CONTEÚDO SOBREPOSTO -->
   <div class="conteudo-sobreposto">
-    <!-- Navegação flutuante -->
     <nav class="nav-flutuante">
       <ul>
         <li><a href="index.html" class="btn-voltar">Voltar ao Início</a></li>
@@ -30,10 +29,8 @@
       <button id="btnConfirmar" class="btn-confirmar">Confirmar Presença</button>
     </nav>
 
-    <!-- Conteúdo Principal -->
     <main class="conteudo-lista-presentes">
-      
-      <!-- Cronômetro -->
+
       <div class="cronometro-container-lista">
         <h1>Contagem Regressiva</h1>
         <div class="cronometro" id="cronometro">
@@ -57,23 +54,19 @@
         <p id="mensagem"></p>
       </div>
 
-      <!-- Título Principal -->
       <div class="cabecalho-lista">
         <h1 class="titulo-principal">Lista de Presentes</h1>
         <p class="mensagem-intro">
-          Sua presença é o presente mais especial! Se quiser nos presentear com 
+          Sua presença é o presente mais especial! Se quiser nos presentear com
           algo a mais, será um mimo extra! 💖
         </p>
       </div>
 
-      <!-- Container dos Presentes -->
       <div id="lista-presentes" class="presentes-container">
-        <!-- Os presentes serão carregados via JavaScript -->
       </div>
 
     </main>
 
-    <!-- Modal de confirmação -->
     <div id="modal-confirmacao" class="modal">
       <div class="modal-content">
         <span class="close-modal">&times;</span>
@@ -88,7 +81,6 @@
       </div>
     </div>
 
-    <!-- Rodapé flutuante -->
     <footer class="rodape-flutuante">
       <div class="contato-flutuante">
         <p>
@@ -108,4 +100,5 @@
   <script src="js/listaPresentes.js"></script>
   <script src="js/calendarHandler.js"></script>
 </body>
+
 </html>

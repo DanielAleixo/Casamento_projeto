@@ -1,11 +1,10 @@
-/* Container do cronômetro - TRANSPARENTE */
 .cronometro-container {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 2.5rem;
   border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 700px;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -16,10 +15,10 @@
 
 .cronometro-container:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-/* Título */
+
 .cronometro-container h1 {
   font-family: 'Whisper', cursive;
   font-size: 3rem;
@@ -29,7 +28,7 @@
   font-weight: 400;
 }
 
-/* Itens do cronômetro */
+
 .cronometro {
   display: flex;
   justify-content: space-between;
@@ -47,7 +46,7 @@
   flex: 1;
   min-width: 0;
   max-width: 140px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.6);
   text-align: center;
@@ -56,7 +55,7 @@
 
 .cronometro-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.8);
 }
 
@@ -83,7 +82,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Mensagem */
+
 #mensagem {
   font-style: italic;
   margin-top: 1.5rem;
@@ -93,27 +92,26 @@
   font-weight: 500;
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
   .cronometro-container {
     width: 95%;
     max-width: 650px;
     padding: 2rem;
   }
-  
+
   .cronometro-container h1 {
     font-size: 2.8rem;
   }
-  
+
   .cronometro {
     gap: 8px;
   }
-  
+
   .cronometro-item {
     padding: 1rem 0.6rem;
     max-width: 130px;
   }
-  
+
   .cronometro-numero {
     font-size: 2.2rem;
   }
@@ -125,28 +123,28 @@
     border-radius: 16px;
     width: 100%;
   }
-  
+
   .cronometro-container h1 {
     font-size: 2.5rem;
   }
-  
+
   .cronometro {
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
   }
-  
+
   .cronometro-item {
     flex: 0 0 calc(50% - 12px);
     max-width: calc(50% - 12px);
     padding: 1rem 0.5rem;
     margin-bottom: 8px;
   }
-  
+
   .cronometro-numero {
     font-size: 2rem;
   }
-  
+
   .cronometro-label {
     font-size: 0.85rem;
   }
@@ -156,26 +154,26 @@
   .cronometro-container {
     padding: 1.5rem 1rem;
   }
-  
+
   .cronometro-container h1 {
     font-size: 2.2rem;
     margin-bottom: 1.2rem;
   }
-  
+
   .cronometro-item {
     flex: 0 0 calc(50% - 8px);
     max-width: calc(50% - 8px);
     padding: 0.9rem 0.4rem;
   }
-  
+
   .cronometro-numero {
     font-size: 1.8rem;
   }
-  
+
   .cronometro-label {
     font-size: 0.8rem;
   }
-  
+
   #mensagem {
     font-size: 1.1rem;
     margin-top: 1.2rem;
